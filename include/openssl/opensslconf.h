@@ -8,9 +8,6 @@
 #ifndef OPENSSL_DOING_MAKEDEPEND
 
 
-#ifndef OPENSSL_NO_BF
-# define OPENSSL_NO_BF
-#endif
 #ifndef OPENSSL_NO_CAMELLIA
 # define OPENSSL_NO_CAMELLIA
 #endif
@@ -38,11 +35,11 @@
 #ifndef OPENSSL_NO_MD4
 # define OPENSSL_NO_MD4
 #endif
-#ifndef OPENSSL_NO_MDC2
-# define OPENSSL_NO_MDC2
-#endif
 #ifndef OPENSSL_NO_RC2
 # define OPENSSL_NO_RC2
+#endif
+#ifndef OPENSSL_NO_RC4
+# define OPENSSL_NO_RC4
 #endif
 #ifndef OPENSSL_NO_RC5
 # define OPENSSL_NO_RC5
@@ -50,17 +47,11 @@
 #ifndef OPENSSL_NO_RFC3779
 # define OPENSSL_NO_RFC3779
 #endif
-#ifndef OPENSSL_NO_RIPEMD
-# define OPENSSL_NO_RIPEMD
-#endif
 #ifndef OPENSSL_NO_SCTP
 # define OPENSSL_NO_SCTP
 #endif
-#ifndef OPENSSL_NO_SEED
-# define OPENSSL_NO_SEED
-#endif
-#ifndef OPENSSL_NO_SSL2
-# define OPENSSL_NO_SSL2
+#ifndef OPENSSL_NO_SRP
+# define OPENSSL_NO_SRP
 #endif
 #ifndef OPENSSL_NO_STORE
 # define OPENSSL_NO_STORE
@@ -71,15 +62,15 @@
 #ifndef OPENSSL_THREADS
 # define OPENSSL_THREADS
 #endif
+#ifndef OPENSSL_NO_HW
+# define OPENSSL_NO_HW
+#endif
 
 /* The OPENSSL_NO_* macros are also defined as NO_* if the application
    asks for it.  This is a transient feature that is provided for those
    who haven't had the time to do the appropriate changes in their
    applications.  */
 #ifdef OPENSSL_ALGORITHM_DEFINES
-# if defined(OPENSSL_NO_BF) && !defined(NO_BF)
-#  define NO_BF
-# endif
 # if defined(OPENSSL_NO_CAMELLIA) && !defined(NO_CAMELLIA)
 #  define NO_CAMELLIA
 # endif
@@ -107,11 +98,11 @@
 # if defined(OPENSSL_NO_MD4) && !defined(NO_MD4)
 #  define NO_MD4
 # endif
-# if defined(OPENSSL_NO_MDC2) && !defined(NO_MDC2)
-#  define NO_MDC2
-# endif
 # if defined(OPENSSL_NO_RC2) && !defined(NO_RC2)
 #  define NO_RC2
+# endif
+# if defined(OPENSSL_NO_RC4) && !defined(NO_RC4)
+#  define NO_RC4
 # endif
 # if defined(OPENSSL_NO_RC5) && !defined(NO_RC5)
 #  define NO_RC5
@@ -119,17 +110,11 @@
 # if defined(OPENSSL_NO_RFC3779) && !defined(NO_RFC3779)
 #  define NO_RFC3779
 # endif
-# if defined(OPENSSL_NO_RIPEMD) && !defined(NO_RIPEMD)
-#  define NO_RIPEMD
-# endif
 # if defined(OPENSSL_NO_SCTP) && !defined(NO_SCTP)
 #  define NO_SCTP
 # endif
-# if defined(OPENSSL_NO_SEED) && !defined(NO_SEED)
-#  define NO_SEED
-# endif
-# if defined(OPENSSL_NO_SSL2) && !defined(NO_SSL2)
-#  define NO_SSL2
+# if defined(OPENSSL_NO_SRP) && !defined(NO_SRP)
+#  define NO_SRP
 # endif
 # if defined(OPENSSL_NO_STORE) && !defined(NO_STORE)
 #  define NO_STORE
@@ -145,8 +130,8 @@
 
 #if !(defined(VMS) || defined(__VMS)) /* VMS uses logical names instead */
 #if defined(HEADER_CRYPTLIB_H) && !defined(OPENSSLDIR)
-#define ENGINESDIR "/usr/local/ssl/lib/engines"
-#define OPENSSLDIR "/usr/local/ssl"
+#define ENGINESDIR "X:\\openssl-1.0.1g/lib/engines"
+#define OPENSSLDIR "X:\\openssl-1.0.1g/ssl"
 #endif
 #endif
 
