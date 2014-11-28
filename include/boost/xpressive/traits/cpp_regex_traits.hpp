@@ -12,7 +12,7 @@
 #define BOOST_XPRESSIVE_TRAITS_CPP_REGEX_TRAITS_HPP_EAN_10_04_2005
 
 // MS compatible compilers support #pragma once
-#if defined(_MSC_VER) && (_MSC_VER >= 1020)
+#if defined(_MSC_VER)
 # pragma once
 #endif
 
@@ -311,8 +311,8 @@ namespace detail
 ///////////////////////////////////////////////////////////////////////////////
 // cpp_regex_traits
 //
-/// \brief Encapsaulates a std::locale for use by the
-/// basic_regex\<\> class template.
+/// \brief Encapsaulates a \c std::locale for use by the
+/// \c basic_regex\<\> class template.
 template<typename Char>
 struct cpp_regex_traits
   : detail::cpp_regex_traits_base<Char>
@@ -404,12 +404,12 @@ struct cpp_regex_traits
         return this->ctype_->toupper(ch);
     }
 
-    /// Returns a string_type containing all the characters that compare equal
+    /// Returns a \c string_type containing all the characters that compare equal
     /// disregrarding case to the one passed in. This function can only be called
-    /// if has_fold_case\<cpp_regex_traits\<Char\> \>::value is true.
+    /// if <tt>has_fold_case\<cpp_regex_traits\<Char\> \>::value</tt> is \c true.
     ///
     /// \param ch The source character.
-    /// \return string_type containing all chars which are equal to ch when disregarding
+    /// \return \c string_type containing all chars which are equal to \c ch when disregarding
     ///     case
     string_type fold_case(char_type ch) const
     {
@@ -467,7 +467,7 @@ struct cpp_regex_traits
     ///
     /// \attention Not currently used
     template<typename FwdIter>
-    string_type transform(FwdIter begin, FwdIter end) const
+    string_type transform(FwdIter, FwdIter) const
     {
         //string_type str(begin, end);
         //return this->transform(str.data(), str.data() + str.size());
@@ -483,7 +483,7 @@ struct cpp_regex_traits
     ///
     /// \attention Not currently used
     template<typename FwdIter>
-    string_type transform_primary(FwdIter begin, FwdIter end) const
+    string_type transform_primary(FwdIter, FwdIter ) const
     {
         BOOST_ASSERT(false); // TODO implement me
         return string_type();
@@ -495,7 +495,7 @@ struct cpp_regex_traits
     ///
     /// \attention Not currently used
     template<typename FwdIter>
-    string_type lookup_collatename(FwdIter begin, FwdIter end) const
+    string_type lookup_collatename(FwdIter, FwdIter) const
     {
         BOOST_ASSERT(false); // TODO implement me
         return string_type();
@@ -607,7 +607,7 @@ private:
     /// INTERNAL ONLY
     static char_class_pair const &char_class(std::size_t j)
     {
-        static char_class_pair const s_char_class_map[] =
+        static BOOST_CONSTEXPR_OR_CONST char_class_pair s_char_class_map[] =
         {
             { BOOST_XPR_CSTR_(char_type, "alnum"),  detail::std_ctype_alnum }
           , { BOOST_XPR_CSTR_(char_type, "alpha"),  detail::std_ctype_alpha }

@@ -16,13 +16,15 @@
 #include <boost/mpl/at.hpp>
 #include <boost/mpl/if.hpp>
 #include <boost/mpl/map.hpp>
+#include <boost/mpl/eval_if.hpp>
 #include <boost/proto/proto_fwd.hpp>
 #include <boost/proto/traits.hpp>
 #include <boost/proto/transform/call.hpp>
 #include <boost/proto/transform/make.hpp>
 #include <boost/proto/transform/impl.hpp>
+#include <boost/proto/transform/env.hpp>
 
-#if defined(_MSC_VER) && (_MSC_VER >= 1020)
+#if defined(_MSC_VER)
 # pragma warning(push)
 # pragma warning(disable : 4714) // function 'xxx' marked as __forceinline not inlined
 #endif
@@ -155,6 +157,14 @@ namespace boost { namespace proto
       : when<_, Fun>
     {};
 
+    namespace envns_
+    {
+        // Define the transforms global
+        BOOST_PROTO_DEFINE_ENV_VAR(transforms_type, transforms);
+    }
+
+    using envns_::transforms;
+
     /// \brief This specialization uses the Data parameter as a collection
     /// of transforms that can be indexed by the specified rule.
     ///
@@ -174,12 +184,13 @@ namespace boost { namespace proto
 
         template<typename Expr, typename State, typename Data>
         struct impl
-          : Data::template when<Grammar>::template impl<Expr, State, Data>
-        {};
-
-        template<typename Expr, typename State, typename Data>
-        struct impl<Expr, State, Data &>
-          : Data::template when<Grammar>::template impl<Expr, State, Data &>
+          : remove_reference<
+                typename mpl::eval_if_c<
+                    proto::result_of::has_env_var<Data, transforms_type>::value
+                  , proto::result_of::env_var<Data, transforms_type>
+                  , proto::result_of::env_var<Data, data_type>
+                >::type
+            >::type::template when<Grammar>::template impl<Expr, State, Data>
         {};
     };
 
@@ -249,7 +260,7 @@ namespace boost { namespace proto
 
 }} // namespace boost::proto
 
-#if defined(_MSC_VER) && (_MSC_VER >= 1020)
+#if defined(_MSC_VER)
 # pragma warning(pop)
 #endif
 

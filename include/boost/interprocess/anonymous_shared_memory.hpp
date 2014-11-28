@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////////////////////////////////
 //
-// (C) Copyright Ion Gaztanaga 2005-2011. Distributed under the Boost
+// (C) Copyright Ion Gaztanaga 2005-2012. Distributed under the Boost
 // Software License, Version 1.0. (See accompanying file
 // LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 //
@@ -10,6 +10,10 @@
 
 #ifndef BOOST_INTERPROCESS_ANONYMOUS_SHARED_MEMORY_HPP
 #define BOOST_INTERPROCESS_ANONYMOUS_SHARED_MEMORY_HPP
+
+#if defined(_MSC_VER)
+#  pragma once
+#endif
 
 #include <boost/interprocess/detail/config_begin.hpp>
 #include <boost/interprocess/detail/workaround.hpp>
@@ -35,7 +39,7 @@
 namespace boost {
 namespace interprocess {
 
-/// @cond
+#if !defined(BOOST_INTERPROCESS_DOXYGEN_INVOKED)
 
 namespace ipcdetail{
 
@@ -53,7 +57,7 @@ namespace ipcdetail{
    };
 }
 
-/// @endcond
+#endif   //#ifndef BOOST_INTERPROCESS_DOXYGEN_INVOKED
 
 //!A function that creates an anonymous shared memory segment of size "size".
 //!If "address" is passed the function will try to map the segment in that address.
@@ -90,13 +94,13 @@ anonymous_shared_memory(std::size_t size, void *address = 0)
                   , 0);
 
    if(address == MAP_FAILED){
-      if(fd != -1)  
+      if(fd != -1)
          close(fd);
       error_info err = system_error_code();
       throw interprocess_exception(err);
    }
 
-   if(fd != -1)  
+   if(fd != -1)
       close(fd);
 
    return ipcdetail::raw_mapped_region_creator::create_posix_mapped_region(address, size);

@@ -6,22 +6,30 @@
 // (C) Copyright 2007-8 Anthony Williams
 // (C) Copyright 2011-2012 Vicente J. Botet Escriba
 
-#include <boost/thread/mutex.hpp>
 #include <boost/thread/win32/thread_primitives.hpp>
-#include <limits.h>
-#include <boost/assert.hpp>
-#include <algorithm>
-#include <boost/thread/cv_status.hpp>
 #include <boost/thread/win32/thread_data.hpp>
-#include <boost/thread/thread_time.hpp>
+#include <boost/thread/win32/thread_data.hpp>
 #include <boost/thread/win32/interlocked_read.hpp>
+#include <boost/thread/cv_status.hpp>
+#if defined BOOST_THREAD_USES_DATETIME
 #include <boost/thread/xtime.hpp>
-#include <vector>
+#endif
+#include <boost/thread/mutex.hpp>
+#include <boost/thread/thread_time.hpp>
+#include <boost/thread/lock_guard.hpp>
+#include <boost/thread/lock_types.hpp>
+
+#include <boost/assert.hpp>
 #include <boost/intrusive_ptr.hpp>
+
 #ifdef BOOST_THREAD_USES_CHRONO
 #include <boost/chrono/system_clocks.hpp>
 #include <boost/chrono/ceil.hpp>
 #endif
+
+#include <limits.h>
+#include <algorithm>
+#include <vector>
 
 #include <boost/config/abi_prefix.hpp>
 
@@ -88,7 +96,7 @@ namespace boost
 
             bool woken()
             {
-                unsigned long const woken_result=detail::win32::WaitForSingleObject(wake_sem,0);
+                unsigned long const woken_result=detail::win32::WaitForSingleObjectEx(wake_sem,0,0);
                 BOOST_ASSERT((woken_result==detail::win32::timeout) || (woken_result==0));
                 return woken_result==0;
             }
@@ -183,14 +191,16 @@ namespace boost
             struct entry_manager
             {
                 entry_ptr const entry;
+                boost::mutex& internal_mutex;
 
                 BOOST_THREAD_NO_COPYABLE(entry_manager)
-                entry_manager(entry_ptr const& entry_):
-                    entry(entry_)
+                entry_manager(entry_ptr const& entry_, boost::mutex& mutex_):
+                    entry(entry_), internal_mutex(mutex_)
                 {}
 
                 ~entry_manager()
                 {
+                    boost::lock_guard<boost::mutex> internal_lock(internal_mutex);
                     entry->remove_waiter();
                 }
 
@@ -207,7 +217,7 @@ namespace boost
             {
                 relocker<lock_type> locker(lock);
 
-                entry_manager entry(get_wait_entry());
+                entry_manager entry(get_wait_entry(), internal_mutex);
 
                 locker.unlock();
 
@@ -314,6 +324,7 @@ namespace boost
         }
 
 
+#if defined BOOST_THREAD_USES_DATETIME
         bool timed_wait(unique_lock<mutex>& m,boost::system_time const& abs_time)
         {
             return do_wait(m,abs_time);
@@ -326,7 +337,16 @@ namespace boost
         template<typename duration_type>
         bool timed_wait(unique_lock<mutex>& m,duration_type const& wait_duration)
         {
-            return do_wait(m,wait_duration.total_milliseconds());
+          if (wait_duration.is_pos_infinity())
+          {
+              wait(m); // or do_wait(m,detail::timeout::sentinel());
+              return true;
+          }
+          if (wait_duration.is_special())
+          {
+            return true;
+          }
+          return do_wait(m,wait_duration.total_milliseconds());
         }
 
         template<typename predicate_type>
@@ -344,7 +364,7 @@ namespace boost
         {
             return do_wait(m,wait_duration.total_milliseconds(),pred);
         }
-
+#endif
 #ifdef BOOST_THREAD_USES_CHRONO
 
         template <class Clock, class Duration>
@@ -354,7 +374,11 @@ namespace boost
                 const chrono::time_point<Clock, Duration>& t)
         {
           using namespace chrono;
-          do_wait(lock, ceil<milliseconds>(t-Clock::now()).count());
+          chrono::time_point<Clock, Duration> now = Clock::now();
+          if (t<=now) {
+            return cv_status::timeout;
+          }
+          do_wait(lock, ceil<milliseconds>(t-now).count());
           return Clock::now() < t ? cv_status::no_timeout :
                                              cv_status::timeout;
         }
@@ -366,6 +390,10 @@ namespace boost
                 const chrono::duration<Rep, Period>& d)
         {
           using namespace chrono;
+          if (d<=chrono::duration<Rep, Period>::zero()) {
+            return cv_status::timeout;
+          }
+
           steady_clock::time_point c_now = steady_clock::now();
           do_wait(lock, ceil<milliseconds>(d).count());
           return steady_clock::now() - c_now < d ? cv_status::no_timeout :
@@ -393,7 +421,7 @@ namespace boost
                 const chrono::duration<Rep, Period>& d,
                 Predicate pred)
         {
-            return wait_until(lock, chrono::steady_clock::now() + d, pred);
+            return wait_until(lock, chrono::steady_clock::now() + d, boost::move(pred));
         }
 #endif
     };
@@ -421,6 +449,7 @@ namespace boost
             while(!pred()) wait(m);
         }
 
+#if defined BOOST_THREAD_USES_DATETIME
         template<typename lock_type>
         bool timed_wait(lock_type& m,boost::system_time const& abs_time)
         {
@@ -456,6 +485,7 @@ namespace boost
         {
             return do_wait(m,wait_duration.total_milliseconds(),pred);
         }
+#endif
 #ifdef BOOST_THREAD_USES_CHRONO
 
         template <class lock_type, class Clock, class Duration>
@@ -465,7 +495,11 @@ namespace boost
                 const chrono::time_point<Clock, Duration>& t)
         {
           using namespace chrono;
-          do_wait(lock, ceil<milliseconds>(t-Clock::now()).count());
+          chrono::time_point<Clock, Duration> now = Clock::now();
+          if (t<=now) {
+            return cv_status::timeout;
+          }
+          do_wait(lock, ceil<milliseconds>(t-now).count());
           return Clock::now() < t ? cv_status::no_timeout :
                                              cv_status::timeout;
         }
@@ -477,6 +511,9 @@ namespace boost
                 const chrono::duration<Rep, Period>& d)
         {
           using namespace chrono;
+          if (d<=chrono::duration<Rep, Period>::zero()) {
+            return cv_status::timeout;
+          }
           steady_clock::time_point c_now = steady_clock::now();
           do_wait(lock, ceil<milliseconds>(d).count());
           return steady_clock::now() - c_now < d ? cv_status::no_timeout :
@@ -505,11 +542,12 @@ namespace boost
                 const chrono::duration<Rep, Period>& d,
                 Predicate pred)
         {
-            return wait_until(lock, chrono::steady_clock::now() + d, pred);
+            return wait_until(lock, chrono::steady_clock::now() + d, boost::move(pred));
         }
 #endif
     };
 
+        BOOST_THREAD_DECL void notify_all_at_thread_exit(condition_variable& cond, unique_lock<mutex> lk);
 }
 
 #include <boost/config/abi_suffix.hpp>

@@ -33,7 +33,7 @@
 #include <boost/proto/detail/as_lvalue.hpp>
 #include <boost/proto/detail/ignore_unused.hpp>
 
-#if defined(_MSC_VER) && (_MSC_VER >= 1020)
+#if defined(_MSC_VER)
 # pragma warning(push)
 # pragma warning(disable : 4714) // function 'xxx' marked as __forceinline not inlined
 #endif
@@ -100,7 +100,7 @@ namespace boost { namespace proto
             static bool const applied = true;
         };
 
-        #if BOOST_WORKAROUND(__GNUC__, == 3) || (__GNUC__ == 4 && __GNUC_MINOR__ == 0)
+        #if BOOST_WORKAROUND(__GNUC__, == 3) || (BOOST_WORKAROUND(__GNUC__, == 4) && __GNUC_MINOR__ == 0)
         // work around GCC bug
         template<typename Tag, typename Args, long N, typename Expr, typename State, typename Data>
         struct make_if_<proto::expr<Tag, Args, N>, Expr, State, Data, false>
@@ -277,7 +277,7 @@ namespace boost { namespace proto
 
 }}
 
-#if defined(_MSC_VER) && (_MSC_VER >= 1020)
+#if defined(_MSC_VER)
 # pragma warning(pop)
 #endif
 
