@@ -24,7 +24,7 @@
 #ifndef NOINLINE
 #ifndef INLINE
 #if defined(__GNUC__)
-	#define INLINE extern inline
+	#define INLINE static inline
 #elif defined(_MSC_VER)
 	#define NOINLINE
 	#define INLINE
