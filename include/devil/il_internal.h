@@ -80,7 +80,7 @@ extern "C" {
 	#define IL_TEXT(s) (s)
 #endif
 #ifdef IL_INLINE_ASM
-	#ifdef _MSC_VER  // MSVC++ only
+	#if defined(_MSC_VER) && !defined(_WIN64)  // MSVC++ only
 		#define USE_WIN32_ASM
 	#endif
 #endif
