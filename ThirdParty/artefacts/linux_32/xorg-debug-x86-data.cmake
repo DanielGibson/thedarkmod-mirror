@@ -1,7 +1,7 @@
 ########### AGGREGATED COMPONENTS AND DEPENDENCIES FOR THE MULTI CONFIG #####################
 #############################################################################################
 
-list(APPEND xorg_COMPONENT_NAMES xorg::x11 xorg::x11-xcb xorg::fontenc xorg::ice xorg::xau xorg::xaw7 xorg::xcursor xorg::xdamage xorg::xdmcp xorg::xext xorg::xfixes xorg::xinerama xorg::xkbfile xorg::xmu xorg::xmuu xorg::xpm xorg::xrandr xorg::xrender xorg::xscrnsaver xorg::xt xorg::xv xorg::xxf86vm xorg::xcb-xkb xorg::xcb-icccm xorg::xcb-image xorg::xcb-keysyms xorg::xcb-randr xorg::xcb-render xorg::xcb-renderutil xorg::xcb-shape xorg::xcb-shm xorg::xcb-sync xorg::xcb-xfixes xorg::xcb-xinerama xorg::xcb xorg::xcb-atom xorg::xcb-aux xorg::xcb-event xorg::xcb-util xorg::xcb-dri3 xorg::xcb-cursor xorg::xcb-dri2 xorg::xcb-glx xorg::xcb-present xorg::xcb-composite xorg::xcb-ewmh xorg::xcb-res xorg::uuid xorg::sm)
+list(APPEND xorg_COMPONENT_NAMES xorg::x11 xorg::x11-xcb xorg::fontenc xorg::ice xorg::xau xorg::xaw7 xorg::xcursor xorg::xdamage xorg::xdmcp xorg::xext xorg::xfixes xorg::xinerama xorg::xkbfile xorg::xmu xorg::xmuu xorg::xpm xorg::xrandr xorg::xrender xorg::xscrnsaver xorg::xt xorg::xv xorg::xxf86vm xorg::xcb-xkb xorg::xcb-icccm xorg::xcb-image xorg::xcb-keysyms xorg::xcb-randr xorg::xcb-render xorg::xcb-renderutil xorg::xcb-shape xorg::xcb-shm xorg::xcb-sync xorg::xcb-xfixes xorg::xcb-xinerama xorg::xcb xorg::xcb-atom xorg::xcb-aux xorg::xcb-event xorg::xcb-util xorg::xcb-dri3 xorg::xcb-dri2 xorg::xcb-glx xorg::xcb-present xorg::xcb-composite xorg::xcb-ewmh xorg::xcb-res xorg::uuid xorg::sm)
 list(REMOVE_DUPLICATES xorg_COMPONENT_NAMES)
 if(DEFINED xorg_FIND_DEPENDENCY_NAMES)
   list(APPEND xorg_FIND_DEPENDENCY_NAMES )
@@ -30,7 +30,7 @@ set(xorg_BIN_DIRS_DEBUG )
 set(xorg_LIBRARY_TYPE_DEBUG SHARED)
 set(xorg_IS_HOST_WINDOWS_DEBUG 0)
 set(xorg_LIBS_DEBUG )
-set(xorg_SYSTEM_LIBS_DEBUG SM uuid xcb-res xcb xcb-ewmh xcb-composite xcb-xfixes xcb-render xcb-shape xcb-present xcb-randr xcb-sync xcb-glx xcb-dri2 xcb-cursor xcb-dri3 xcb-util xcb-xinerama xcb-shm xcb-render-util xcb-keysyms xcb-image xcb-icccm xcb-xkb Xxf86vm Xv Xt X11 Xss Xrender Xrandr Xpm Xmuu Xmu xkbfile Xinerama Xfixes Xext Xdmcp Xdamage Xcursor Xaw7 Xau ICE fontenc X11-xcb)
+set(xorg_SYSTEM_LIBS_DEBUG SM uuid xcb-res xcb xcb-ewmh xcb-composite xcb-xfixes xcb-render xcb-shape xcb-present xcb-randr xcb-sync xcb-glx xcb-dri2 xcb-dri3 xcb-util xcb-xinerama xcb-shm xcb-render-util xcb-keysyms xcb-image xcb-icccm xcb-xkb Xxf86vm Xv Xt X11 Xss Xrender Xrandr Xpm Xmuu Xmu xkbfile Xinerama Xfixes Xext Xdmcp Xdamage Xcursor Xaw7 Xau ICE fontenc X11-xcb)
 set(xorg_FRAMEWORK_DIRS_DEBUG )
 set(xorg_FRAMEWORKS_DEBUG )
 set(xorg_BUILD_DIRS_DEBUG )
@@ -47,7 +47,7 @@ set(xorg_LINKER_FLAGS_DEBUG
     "$<$<STREQUAL:$<TARGET_PROPERTY:TYPE>,EXECUTABLE>:${xorg_EXE_LINK_FLAGS_DEBUG}>")
 
 
-set(xorg_COMPONENTS_DEBUG xorg::x11 xorg::x11-xcb xorg::fontenc xorg::ice xorg::xau xorg::xaw7 xorg::xcursor xorg::xdamage xorg::xdmcp xorg::xext xorg::xfixes xorg::xinerama xorg::xkbfile xorg::xmu xorg::xmuu xorg::xpm xorg::xrandr xorg::xrender xorg::xscrnsaver xorg::xt xorg::xv xorg::xxf86vm xorg::xcb-xkb xorg::xcb-icccm xorg::xcb-image xorg::xcb-keysyms xorg::xcb-randr xorg::xcb-render xorg::xcb-renderutil xorg::xcb-shape xorg::xcb-shm xorg::xcb-sync xorg::xcb-xfixes xorg::xcb-xinerama xorg::xcb xorg::xcb-atom xorg::xcb-aux xorg::xcb-event xorg::xcb-util xorg::xcb-dri3 xorg::xcb-cursor xorg::xcb-dri2 xorg::xcb-glx xorg::xcb-present xorg::xcb-composite xorg::xcb-ewmh xorg::xcb-res xorg::uuid xorg::sm)
+set(xorg_COMPONENTS_DEBUG xorg::x11 xorg::x11-xcb xorg::fontenc xorg::ice xorg::xau xorg::xaw7 xorg::xcursor xorg::xdamage xorg::xdmcp xorg::xext xorg::xfixes xorg::xinerama xorg::xkbfile xorg::xmu xorg::xmuu xorg::xpm xorg::xrandr xorg::xrender xorg::xscrnsaver xorg::xt xorg::xv xorg::xxf86vm xorg::xcb-xkb xorg::xcb-icccm xorg::xcb-image xorg::xcb-keysyms xorg::xcb-randr xorg::xcb-render xorg::xcb-renderutil xorg::xcb-shape xorg::xcb-shm xorg::xcb-sync xorg::xcb-xfixes xorg::xcb-xinerama xorg::xcb xorg::xcb-atom xorg::xcb-aux xorg::xcb-event xorg::xcb-util xorg::xcb-dri3 xorg::xcb-dri2 xorg::xcb-glx xorg::xcb-present xorg::xcb-composite xorg::xcb-ewmh xorg::xcb-res xorg::uuid xorg::sm)
 ########### COMPONENT xorg::sm VARIABLES ############################################
 
 set(xorg_xorg_sm_INCLUDE_DIRS_DEBUG )
@@ -296,37 +296,6 @@ set(xorg_xorg_xcb-dri2_LINKER_FLAGS_DEBUG
 set(xorg_xorg_xcb-dri2_COMPILE_OPTIONS_DEBUG
     "$<$<COMPILE_LANGUAGE:CXX>:${xorg_xorg_xcb-dri2_COMPILE_OPTIONS_CXX_DEBUG}>"
     "$<$<COMPILE_LANGUAGE:C>:${xorg_xorg_xcb-dri2_COMPILE_OPTIONS_C_DEBUG}>")
-########### COMPONENT xorg::xcb-cursor VARIABLES ############################################
-
-set(xorg_xorg_xcb-cursor_INCLUDE_DIRS_DEBUG )
-set(xorg_xorg_xcb-cursor_LIB_DIRS_DEBUG )
-set(xorg_xorg_xcb-cursor_BIN_DIRS_DEBUG )
-set(xorg_xorg_xcb-cursor_LIBRARY_TYPE_DEBUG SHARED)
-set(xorg_xorg_xcb-cursor_IS_HOST_WINDOWS_DEBUG 0)
-set(xorg_xorg_xcb-cursor_RES_DIRS_DEBUG )
-set(xorg_xorg_xcb-cursor_DEFINITIONS_DEBUG )
-set(xorg_xorg_xcb-cursor_OBJECTS_DEBUG )
-set(xorg_xorg_xcb-cursor_COMPILE_DEFINITIONS_DEBUG )
-set(xorg_xorg_xcb-cursor_COMPILE_OPTIONS_C_DEBUG "")
-set(xorg_xorg_xcb-cursor_COMPILE_OPTIONS_CXX_DEBUG "")
-set(xorg_xorg_xcb-cursor_LIBS_DEBUG )
-set(xorg_xorg_xcb-cursor_SYSTEM_LIBS_DEBUG xcb-cursor xcb)
-set(xorg_xorg_xcb-cursor_FRAMEWORK_DIRS_DEBUG )
-set(xorg_xorg_xcb-cursor_FRAMEWORKS_DEBUG )
-set(xorg_xorg_xcb-cursor_DEPENDENCIES_DEBUG )
-set(xorg_xorg_xcb-cursor_SHARED_LINK_FLAGS_DEBUG )
-set(xorg_xorg_xcb-cursor_EXE_LINK_FLAGS_DEBUG )
-set(xorg_xorg_xcb-cursor_NO_SONAME_MODE_DEBUG FALSE)
-
-# COMPOUND VARIABLES
-set(xorg_xorg_xcb-cursor_LINKER_FLAGS_DEBUG
-        $<$<STREQUAL:$<TARGET_PROPERTY:TYPE>,SHARED_LIBRARY>:${xorg_xorg_xcb-cursor_SHARED_LINK_FLAGS_DEBUG}>
-        $<$<STREQUAL:$<TARGET_PROPERTY:TYPE>,MODULE_LIBRARY>:${xorg_xorg_xcb-cursor_SHARED_LINK_FLAGS_DEBUG}>
-        $<$<STREQUAL:$<TARGET_PROPERTY:TYPE>,EXECUTABLE>:${xorg_xorg_xcb-cursor_EXE_LINK_FLAGS_DEBUG}>
-)
-set(xorg_xorg_xcb-cursor_COMPILE_OPTIONS_DEBUG
-    "$<$<COMPILE_LANGUAGE:CXX>:${xorg_xorg_xcb-cursor_COMPILE_OPTIONS_CXX_DEBUG}>"
-    "$<$<COMPILE_LANGUAGE:C>:${xorg_xorg_xcb-cursor_COMPILE_OPTIONS_C_DEBUG}>")
 ########### COMPONENT xorg::xcb-dri3 VARIABLES ############################################
 
 set(xorg_xorg_xcb-dri3_INCLUDE_DIRS_DEBUG )

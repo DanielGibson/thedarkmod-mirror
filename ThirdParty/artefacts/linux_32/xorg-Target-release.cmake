@@ -508,65 +508,6 @@ set(CMAKE_MODULE_PATH ${xorg_BUILD_DIRS_RELEASE} ${CMAKE_MODULE_PATH})
         set_property(TARGET xorg::xcb-dri2 APPEND PROPERTY INTERFACE_COMPILE_OPTIONS
                      $<$<CONFIG:Release>:${xorg_xorg_xcb-dri2_COMPILE_OPTIONS_RELEASE}>)
 
-    ########## COMPONENT xorg::xcb-cursor #############
-
-        set(xorg_xorg_xcb-cursor_FRAMEWORKS_FOUND_RELEASE "")
-        conan_find_apple_frameworks(xorg_xorg_xcb-cursor_FRAMEWORKS_FOUND_RELEASE "${xorg_xorg_xcb-cursor_FRAMEWORKS_RELEASE}" "${xorg_xorg_xcb-cursor_FRAMEWORK_DIRS_RELEASE}")
-
-        set(xorg_xorg_xcb-cursor_LIBRARIES_TARGETS "")
-
-        ######## Create an interface target to contain all the dependencies (frameworks, system and conan deps)
-        if(NOT TARGET xorg_xorg_xcb-cursor_DEPS_TARGET)
-            add_library(xorg_xorg_xcb-cursor_DEPS_TARGET INTERFACE IMPORTED)
-        endif()
-
-        set_property(TARGET xorg_xorg_xcb-cursor_DEPS_TARGET
-                     APPEND PROPERTY INTERFACE_LINK_LIBRARIES
-                     $<$<CONFIG:Release>:${xorg_xorg_xcb-cursor_FRAMEWORKS_FOUND_RELEASE}>
-                     $<$<CONFIG:Release>:${xorg_xorg_xcb-cursor_SYSTEM_LIBS_RELEASE}>
-                     $<$<CONFIG:Release>:${xorg_xorg_xcb-cursor_DEPENDENCIES_RELEASE}>
-                     )
-
-        ####### Find the libraries declared in cpp_info.component["xxx"].libs,
-        ####### create an IMPORTED target for each one and link the 'xorg_xorg_xcb-cursor_DEPS_TARGET' to all of them
-        conan_package_library_targets("${xorg_xorg_xcb-cursor_LIBS_RELEASE}"
-                              "${xorg_xorg_xcb-cursor_LIB_DIRS_RELEASE}"
-                              "${xorg_xorg_xcb-cursor_BIN_DIRS_RELEASE}" # package_bindir
-                              "${xorg_xorg_xcb-cursor_LIBRARY_TYPE_RELEASE}"
-                              "${xorg_xorg_xcb-cursor_IS_HOST_WINDOWS_RELEASE}"
-                              xorg_xorg_xcb-cursor_DEPS_TARGET
-                              xorg_xorg_xcb-cursor_LIBRARIES_TARGETS
-                              "_RELEASE"
-                              "xorg_xorg_xcb-cursor"
-                              "${xorg_xorg_xcb-cursor_NO_SONAME_MODE_RELEASE}")
-
-
-        ########## TARGET PROPERTIES #####################################
-        set_property(TARGET xorg::xcb-cursor
-                     APPEND PROPERTY INTERFACE_LINK_LIBRARIES
-                     $<$<CONFIG:Release>:${xorg_xorg_xcb-cursor_OBJECTS_RELEASE}>
-                     $<$<CONFIG:Release>:${xorg_xorg_xcb-cursor_LIBRARIES_TARGETS}>
-                     )
-
-        if("${xorg_xorg_xcb-cursor_LIBS_RELEASE}" STREQUAL "")
-            # If the component is not declaring any "cpp_info.components['foo'].libs" the system, frameworks etc are not
-            # linked to the imported targets and we need to do it to the global target
-            set_property(TARGET xorg::xcb-cursor
-                         APPEND PROPERTY INTERFACE_LINK_LIBRARIES
-                         xorg_xorg_xcb-cursor_DEPS_TARGET)
-        endif()
-
-        set_property(TARGET xorg::xcb-cursor APPEND PROPERTY INTERFACE_LINK_OPTIONS
-                     $<$<CONFIG:Release>:${xorg_xorg_xcb-cursor_LINKER_FLAGS_RELEASE}>)
-        set_property(TARGET xorg::xcb-cursor APPEND PROPERTY INTERFACE_INCLUDE_DIRECTORIES
-                     $<$<CONFIG:Release>:${xorg_xorg_xcb-cursor_INCLUDE_DIRS_RELEASE}>)
-        set_property(TARGET xorg::xcb-cursor APPEND PROPERTY INTERFACE_LINK_DIRECTORIES
-                     $<$<CONFIG:Release>:${xorg_xorg_xcb-cursor_LIB_DIRS_RELEASE}>)
-        set_property(TARGET xorg::xcb-cursor APPEND PROPERTY INTERFACE_COMPILE_DEFINITIONS
-                     $<$<CONFIG:Release>:${xorg_xorg_xcb-cursor_COMPILE_DEFINITIONS_RELEASE}>)
-        set_property(TARGET xorg::xcb-cursor APPEND PROPERTY INTERFACE_COMPILE_OPTIONS
-                     $<$<CONFIG:Release>:${xorg_xorg_xcb-cursor_COMPILE_OPTIONS_RELEASE}>)
-
     ########## COMPONENT xorg::xcb-dri3 #############
 
         set(xorg_xorg_xcb-dri3_FRAMEWORKS_FOUND_RELEASE "")
@@ -2936,7 +2877,6 @@ set(CMAKE_MODULE_PATH ${xorg_BUILD_DIRS_RELEASE} ${CMAKE_MODULE_PATH})
     set_property(TARGET xorg::xorg APPEND PROPERTY INTERFACE_LINK_LIBRARIES xorg::xcb-present)
     set_property(TARGET xorg::xorg APPEND PROPERTY INTERFACE_LINK_LIBRARIES xorg::xcb-glx)
     set_property(TARGET xorg::xorg APPEND PROPERTY INTERFACE_LINK_LIBRARIES xorg::xcb-dri2)
-    set_property(TARGET xorg::xorg APPEND PROPERTY INTERFACE_LINK_LIBRARIES xorg::xcb-cursor)
     set_property(TARGET xorg::xorg APPEND PROPERTY INTERFACE_LINK_LIBRARIES xorg::xcb-dri3)
     set_property(TARGET xorg::xorg APPEND PROPERTY INTERFACE_LINK_LIBRARIES xorg::xcb-util)
     set_property(TARGET xorg::xorg APPEND PROPERTY INTERFACE_LINK_LIBRARIES xorg::xcb-event)
