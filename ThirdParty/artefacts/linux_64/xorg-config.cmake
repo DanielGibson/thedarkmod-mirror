@@ -26,13 +26,17 @@ foreach(_DEPENDENCY ${xorg_FIND_DEPENDENCY_NAMES} )
 endforeach()
 
 set(xorg_VERSION_STRING "system")
-set(xorg_INCLUDE_DIRS ${xorg_INCLUDE_DIRS_RELEASE} )
-set(xorg_INCLUDE_DIR ${xorg_INCLUDE_DIRS_RELEASE} )
-set(xorg_LIBRARIES ${xorg_LIBRARIES_RELEASE} )
-set(xorg_DEFINITIONS ${xorg_DEFINITIONS_RELEASE} )
+set(xorg_INCLUDE_DIRS ${xorg_INCLUDE_DIRS_DEBUG} )
+set(xorg_INCLUDE_DIR ${xorg_INCLUDE_DIRS_DEBUG} )
+set(xorg_LIBRARIES ${xorg_LIBRARIES_DEBUG} )
+set(xorg_DEFINITIONS ${xorg_DEFINITIONS_DEBUG} )
 
-# Only the first installed configuration is included to avoid the collision
-foreach(_BUILD_MODULE ${xorg_BUILD_MODULES_PATHS_RELEASE} )
+
+# Definition of extra CMake variables from cmake_extra_variables
+
+
+# Only the last installed configuration BUILD_MODULES are included to avoid the collision
+foreach(_BUILD_MODULE ${xorg_BUILD_MODULES_PATHS_DEBUG} )
     message(${xorg_MESSAGE_MODE} "Conan: Including build module from '${_BUILD_MODULE}'")
     include(${_BUILD_MODULE})
 endforeach()
