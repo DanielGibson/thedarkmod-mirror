@@ -25,14 +25,18 @@ foreach(_DEPENDENCY ${mbedtls_FIND_DEPENDENCY_NAMES} )
     endif()
 endforeach()
 
-set(MbedTLS_VERSION_STRING "3.6.0")
-set(MbedTLS_INCLUDE_DIRS ${mbedtls_INCLUDE_DIRS_RELEASE} )
-set(MbedTLS_INCLUDE_DIR ${mbedtls_INCLUDE_DIRS_RELEASE} )
-set(MbedTLS_LIBRARIES ${mbedtls_LIBRARIES_RELEASE} )
-set(MbedTLS_DEFINITIONS ${mbedtls_DEFINITIONS_RELEASE} )
+set(MbedTLS_VERSION_STRING "3.6.6")
+set(MbedTLS_INCLUDE_DIRS ${mbedtls_INCLUDE_DIRS_DEBUG} )
+set(MbedTLS_INCLUDE_DIR ${mbedtls_INCLUDE_DIRS_DEBUG} )
+set(MbedTLS_LIBRARIES ${mbedtls_LIBRARIES_DEBUG} )
+set(MbedTLS_DEFINITIONS ${mbedtls_DEFINITIONS_DEBUG} )
 
-# Only the first installed configuration is included to avoid the collision
-foreach(_BUILD_MODULE ${mbedtls_BUILD_MODULES_PATHS_RELEASE} )
+
+# Definition of extra CMake variables from cmake_extra_variables
+
+
+# Only the last installed configuration BUILD_MODULES are included to avoid the collision
+foreach(_BUILD_MODULE ${mbedtls_BUILD_MODULES_PATHS_DEBUG} )
     message(${MbedTLS_MESSAGE_MODE} "Conan: Including build module from '${_BUILD_MODULE}'")
     include(${_BUILD_MODULE})
 endforeach()

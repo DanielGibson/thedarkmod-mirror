@@ -26,13 +26,17 @@ foreach(_DEPENDENCY ${opengl_FIND_DEPENDENCY_NAMES} )
 endforeach()
 
 set(opengl_system_VERSION_STRING "system")
-set(opengl_system_INCLUDE_DIRS ${opengl_INCLUDE_DIRS_RELEASE} )
-set(opengl_system_INCLUDE_DIR ${opengl_INCLUDE_DIRS_RELEASE} )
-set(opengl_system_LIBRARIES ${opengl_LIBRARIES_RELEASE} )
-set(opengl_system_DEFINITIONS ${opengl_DEFINITIONS_RELEASE} )
+set(opengl_system_INCLUDE_DIRS ${opengl_INCLUDE_DIRS_DEBUG} )
+set(opengl_system_INCLUDE_DIR ${opengl_INCLUDE_DIRS_DEBUG} )
+set(opengl_system_LIBRARIES ${opengl_LIBRARIES_DEBUG} )
+set(opengl_system_DEFINITIONS ${opengl_DEFINITIONS_DEBUG} )
 
-# Only the first installed configuration is included to avoid the collision
-foreach(_BUILD_MODULE ${opengl_BUILD_MODULES_PATHS_RELEASE} )
+
+# Definition of extra CMake variables from cmake_extra_variables
+
+
+# Only the last installed configuration BUILD_MODULES are included to avoid the collision
+foreach(_BUILD_MODULE ${opengl_BUILD_MODULES_PATHS_DEBUG} )
     message(${opengl_system_MESSAGE_MODE} "Conan: Including build module from '${_BUILD_MODULE}'")
     include(${_BUILD_MODULE})
 endforeach()

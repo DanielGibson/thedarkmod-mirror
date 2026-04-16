@@ -95,6 +95,7 @@ set(CMAKE_MODULE_PATH ${vorbis_BUILD_DIRS_DEBUG} ${CMAKE_MODULE_PATH})
         set_property(TARGET vorbis::vorbisfile-alias APPEND PROPERTY INTERFACE_COMPILE_OPTIONS
                      $<$<CONFIG:Debug>:${vorbis_vorbis_vorbisfile-alias_COMPILE_OPTIONS_DEBUG}>)
 
+
     ########## COMPONENT vorbis::vorbisenc-alias #############
 
         set(vorbis_vorbis_vorbisenc-alias_FRAMEWORKS_FOUND_DEBUG "")
@@ -153,6 +154,7 @@ set(CMAKE_MODULE_PATH ${vorbis_BUILD_DIRS_DEBUG} ${CMAKE_MODULE_PATH})
                      $<$<CONFIG:Debug>:${vorbis_vorbis_vorbisenc-alias_COMPILE_DEFINITIONS_DEBUG}>)
         set_property(TARGET vorbis::vorbisenc-alias APPEND PROPERTY INTERFACE_COMPILE_OPTIONS
                      $<$<CONFIG:Debug>:${vorbis_vorbis_vorbisenc-alias_COMPILE_OPTIONS_DEBUG}>)
+
 
     ########## COMPONENT Vorbis::vorbisfile #############
 
@@ -213,6 +215,7 @@ set(CMAKE_MODULE_PATH ${vorbis_BUILD_DIRS_DEBUG} ${CMAKE_MODULE_PATH})
         set_property(TARGET Vorbis::vorbisfile APPEND PROPERTY INTERFACE_COMPILE_OPTIONS
                      $<$<CONFIG:Debug>:${vorbis_Vorbis_vorbisfile_COMPILE_OPTIONS_DEBUG}>)
 
+
     ########## COMPONENT Vorbis::vorbisenc #############
 
         set(vorbis_Vorbis_vorbisenc_FRAMEWORKS_FOUND_DEBUG "")
@@ -272,6 +275,7 @@ set(CMAKE_MODULE_PATH ${vorbis_BUILD_DIRS_DEBUG} ${CMAKE_MODULE_PATH})
         set_property(TARGET Vorbis::vorbisenc APPEND PROPERTY INTERFACE_COMPILE_OPTIONS
                      $<$<CONFIG:Debug>:${vorbis_Vorbis_vorbisenc_COMPILE_OPTIONS_DEBUG}>)
 
+
     ########## COMPONENT Vorbis::vorbis #############
 
         set(vorbis_Vorbis_vorbis_FRAMEWORKS_FOUND_DEBUG "")
@@ -330,6 +334,7 @@ set(CMAKE_MODULE_PATH ${vorbis_BUILD_DIRS_DEBUG} ${CMAKE_MODULE_PATH})
                      $<$<CONFIG:Debug>:${vorbis_Vorbis_vorbis_COMPILE_DEFINITIONS_DEBUG}>)
         set_property(TARGET Vorbis::vorbis APPEND PROPERTY INTERFACE_COMPILE_OPTIONS
                      $<$<CONFIG:Debug>:${vorbis_Vorbis_vorbis_COMPILE_OPTIONS_DEBUG}>)
+
 
     ########## AGGREGATED GLOBAL TARGET WITH THE COMPONENTS #####################
     set_property(TARGET vorbis::vorbis APPEND PROPERTY INTERFACE_LINK_LIBRARIES vorbis::vorbisfile-alias)

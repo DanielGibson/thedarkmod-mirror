@@ -26,13 +26,17 @@ foreach(_DEPENDENCY ${glu_FIND_DEPENDENCY_NAMES} )
 endforeach()
 
 set(glu_VERSION_STRING "system")
-set(glu_INCLUDE_DIRS ${glu_INCLUDE_DIRS_RELEASE} )
-set(glu_INCLUDE_DIR ${glu_INCLUDE_DIRS_RELEASE} )
-set(glu_LIBRARIES ${glu_LIBRARIES_RELEASE} )
-set(glu_DEFINITIONS ${glu_DEFINITIONS_RELEASE} )
+set(glu_INCLUDE_DIRS ${glu_INCLUDE_DIRS_DEBUG} )
+set(glu_INCLUDE_DIR ${glu_INCLUDE_DIRS_DEBUG} )
+set(glu_LIBRARIES ${glu_LIBRARIES_DEBUG} )
+set(glu_DEFINITIONS ${glu_DEFINITIONS_DEBUG} )
 
-# Only the first installed configuration is included to avoid the collision
-foreach(_BUILD_MODULE ${glu_BUILD_MODULES_PATHS_RELEASE} )
+
+# Definition of extra CMake variables from cmake_extra_variables
+
+
+# Only the last installed configuration BUILD_MODULES are included to avoid the collision
+foreach(_BUILD_MODULE ${glu_BUILD_MODULES_PATHS_DEBUG} )
     message(${glu_MESSAGE_MODE} "Conan: Including build module from '${_BUILD_MODULE}'")
     include(${_BUILD_MODULE})
 endforeach()

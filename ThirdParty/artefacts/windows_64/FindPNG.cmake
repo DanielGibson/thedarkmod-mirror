@@ -25,14 +25,18 @@ foreach(_DEPENDENCY ${libpng_FIND_DEPENDENCY_NAMES} )
     endif()
 endforeach()
 
-set(PNG_VERSION_STRING "1.6.43")
-set(PNG_INCLUDE_DIRS ${libpng_INCLUDE_DIRS_RELEASE} )
-set(PNG_INCLUDE_DIR ${libpng_INCLUDE_DIRS_RELEASE} )
-set(PNG_LIBRARIES ${libpng_LIBRARIES_RELEASE} )
-set(PNG_DEFINITIONS ${libpng_DEFINITIONS_RELEASE} )
+set(PNG_VERSION_STRING "1.6.57")
+set(PNG_INCLUDE_DIRS ${libpng_INCLUDE_DIRS_DEBUG} )
+set(PNG_INCLUDE_DIR ${libpng_INCLUDE_DIRS_DEBUG} )
+set(PNG_LIBRARIES ${libpng_LIBRARIES_DEBUG} )
+set(PNG_DEFINITIONS ${libpng_DEFINITIONS_DEBUG} )
 
-# Only the first installed configuration is included to avoid the collision
-foreach(_BUILD_MODULE ${libpng_BUILD_MODULES_PATHS_RELEASE} )
+
+# Definition of extra CMake variables from cmake_extra_variables
+
+
+# Only the last installed configuration BUILD_MODULES are included to avoid the collision
+foreach(_BUILD_MODULE ${libpng_BUILD_MODULES_PATHS_DEBUG} )
     message(${PNG_MESSAGE_MODE} "Conan: Including build module from '${_BUILD_MODULE}'")
     include(${_BUILD_MODULE})
 endforeach()
@@ -40,9 +44,14 @@ endforeach()
 
 include(FindPackageHandleStandardArgs)
 set(PNG_FOUND 1)
-set(PNG_VERSION "1.6.43")
+set(PNG_VERSION "1.6.57")
 
 find_package_handle_standard_args(PNG
                                   REQUIRED_VARS PNG_VERSION
                                   VERSION_VAR PNG_VERSION)
 mark_as_advanced(PNG_FOUND PNG_VERSION)
+
+set(PNG_FOUND 1)
+set(PNG_VERSION "1.6.57")
+mark_as_advanced(PNG_FOUND PNG_VERSION)
+

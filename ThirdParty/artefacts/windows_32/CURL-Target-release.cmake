@@ -95,6 +95,7 @@ set(CMAKE_MODULE_PATH ${libcurl_BUILD_DIRS_RELEASE} ${CMAKE_MODULE_PATH})
         set_property(TARGET CURL::libcurl APPEND PROPERTY INTERFACE_COMPILE_OPTIONS
                      $<$<CONFIG:Release>:${libcurl_CURL_libcurl_COMPILE_OPTIONS_RELEASE}>)
 
+
     ########## AGGREGATED GLOBAL TARGET WITH THE COMPONENTS #####################
     set_property(TARGET CURL::libcurl APPEND PROPERTY INTERFACE_LINK_LIBRARIES CURL::libcurl)
 

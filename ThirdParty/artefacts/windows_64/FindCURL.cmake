@@ -25,14 +25,18 @@ foreach(_DEPENDENCY ${libcurl_FIND_DEPENDENCY_NAMES} )
     endif()
 endforeach()
 
-set(CURL_VERSION_STRING "8.6.0")
-set(CURL_INCLUDE_DIRS ${libcurl_INCLUDE_DIRS_RELEASE} )
-set(CURL_INCLUDE_DIR ${libcurl_INCLUDE_DIRS_RELEASE} )
-set(CURL_LIBRARIES ${libcurl_LIBRARIES_RELEASE} )
-set(CURL_DEFINITIONS ${libcurl_DEFINITIONS_RELEASE} )
+set(CURL_VERSION_STRING "8.19.0")
+set(CURL_INCLUDE_DIRS ${libcurl_INCLUDE_DIRS_DEBUG} )
+set(CURL_INCLUDE_DIR ${libcurl_INCLUDE_DIRS_DEBUG} )
+set(CURL_LIBRARIES ${libcurl_LIBRARIES_DEBUG} )
+set(CURL_DEFINITIONS ${libcurl_DEFINITIONS_DEBUG} )
 
-# Only the first installed configuration is included to avoid the collision
-foreach(_BUILD_MODULE ${libcurl_BUILD_MODULES_PATHS_RELEASE} )
+
+# Definition of extra CMake variables from cmake_extra_variables
+
+
+# Only the last installed configuration BUILD_MODULES are included to avoid the collision
+foreach(_BUILD_MODULE ${libcurl_BUILD_MODULES_PATHS_DEBUG} )
     message(${CURL_MESSAGE_MODE} "Conan: Including build module from '${_BUILD_MODULE}'")
     include(${_BUILD_MODULE})
 endforeach()
@@ -40,9 +44,14 @@ endforeach()
 
 include(FindPackageHandleStandardArgs)
 set(CURL_FOUND 1)
-set(CURL_VERSION "8.6.0")
+set(CURL_VERSION "8.19.0")
 
 find_package_handle_standard_args(CURL
                                   REQUIRED_VARS CURL_VERSION
                                   VERSION_VAR CURL_VERSION)
 mark_as_advanced(CURL_FOUND CURL_VERSION)
+
+set(CURL_FOUND 1)
+set(CURL_VERSION "8.19.0")
+mark_as_advanced(CURL_FOUND CURL_VERSION)
+

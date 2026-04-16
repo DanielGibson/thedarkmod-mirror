@@ -25,14 +25,18 @@ foreach(_DEPENDENCY ${tracy_FIND_DEPENDENCY_NAMES} )
     endif()
 endforeach()
 
-set(tracy_VERSION_STRING "0.10")
-set(tracy_INCLUDE_DIRS ${tracy_INCLUDE_DIRS_RELEASE} )
-set(tracy_INCLUDE_DIR ${tracy_INCLUDE_DIRS_RELEASE} )
-set(tracy_LIBRARIES ${tracy_LIBRARIES_RELEASE} )
-set(tracy_DEFINITIONS ${tracy_DEFINITIONS_RELEASE} )
+set(tracy_VERSION_STRING "0.13.1")
+set(tracy_INCLUDE_DIRS ${tracy_INCLUDE_DIRS_DEBUG} )
+set(tracy_INCLUDE_DIR ${tracy_INCLUDE_DIRS_DEBUG} )
+set(tracy_LIBRARIES ${tracy_LIBRARIES_DEBUG} )
+set(tracy_DEFINITIONS ${tracy_DEFINITIONS_DEBUG} )
 
-# Only the first installed configuration is included to avoid the collision
-foreach(_BUILD_MODULE ${tracy_BUILD_MODULES_PATHS_RELEASE} )
+
+# Definition of extra CMake variables from cmake_extra_variables
+
+
+# Only the last installed configuration BUILD_MODULES are included to avoid the collision
+foreach(_BUILD_MODULE ${tracy_BUILD_MODULES_PATHS_DEBUG} )
     message(${tracy_MESSAGE_MODE} "Conan: Including build module from '${_BUILD_MODULE}'")
     include(${_BUILD_MODULE})
 endforeach()

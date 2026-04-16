@@ -26,13 +26,17 @@ foreach(_DEPENDENCY ${ogg_FIND_DEPENDENCY_NAMES} )
 endforeach()
 
 set(Ogg_VERSION_STRING "1.3.5")
-set(Ogg_INCLUDE_DIRS ${ogg_INCLUDE_DIRS_RELEASE} )
-set(Ogg_INCLUDE_DIR ${ogg_INCLUDE_DIRS_RELEASE} )
-set(Ogg_LIBRARIES ${ogg_LIBRARIES_RELEASE} )
-set(Ogg_DEFINITIONS ${ogg_DEFINITIONS_RELEASE} )
+set(Ogg_INCLUDE_DIRS ${ogg_INCLUDE_DIRS_DEBUG} )
+set(Ogg_INCLUDE_DIR ${ogg_INCLUDE_DIRS_DEBUG} )
+set(Ogg_LIBRARIES ${ogg_LIBRARIES_DEBUG} )
+set(Ogg_DEFINITIONS ${ogg_DEFINITIONS_DEBUG} )
 
-# Only the first installed configuration is included to avoid the collision
-foreach(_BUILD_MODULE ${ogg_BUILD_MODULES_PATHS_RELEASE} )
+
+# Definition of extra CMake variables from cmake_extra_variables
+
+
+# Only the last installed configuration BUILD_MODULES are included to avoid the collision
+foreach(_BUILD_MODULE ${ogg_BUILD_MODULES_PATHS_DEBUG} )
     message(${Ogg_MESSAGE_MODE} "Conan: Including build module from '${_BUILD_MODULE}'")
     include(${_BUILD_MODULE})
 endforeach()

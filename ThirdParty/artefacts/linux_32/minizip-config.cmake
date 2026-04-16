@@ -26,13 +26,17 @@ foreach(_DEPENDENCY ${minizip_FIND_DEPENDENCY_NAMES} )
 endforeach()
 
 set(minizip_VERSION_STRING "1.3.1")
-set(minizip_INCLUDE_DIRS ${minizip_INCLUDE_DIRS_RELEASE} )
-set(minizip_INCLUDE_DIR ${minizip_INCLUDE_DIRS_RELEASE} )
-set(minizip_LIBRARIES ${minizip_LIBRARIES_RELEASE} )
-set(minizip_DEFINITIONS ${minizip_DEFINITIONS_RELEASE} )
+set(minizip_INCLUDE_DIRS ${minizip_INCLUDE_DIRS_DEBUG} )
+set(minizip_INCLUDE_DIR ${minizip_INCLUDE_DIRS_DEBUG} )
+set(minizip_LIBRARIES ${minizip_LIBRARIES_DEBUG} )
+set(minizip_DEFINITIONS ${minizip_DEFINITIONS_DEBUG} )
 
-# Only the first installed configuration is included to avoid the collision
-foreach(_BUILD_MODULE ${minizip_BUILD_MODULES_PATHS_RELEASE} )
+
+# Definition of extra CMake variables from cmake_extra_variables
+
+
+# Only the last installed configuration BUILD_MODULES are included to avoid the collision
+foreach(_BUILD_MODULE ${minizip_BUILD_MODULES_PATHS_DEBUG} )
     message(${minizip_MESSAGE_MODE} "Conan: Including build module from '${_BUILD_MODULE}'")
     include(${_BUILD_MODULE})
 endforeach()

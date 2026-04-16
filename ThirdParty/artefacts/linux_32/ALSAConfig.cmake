@@ -25,14 +25,18 @@ foreach(_DEPENDENCY ${libalsa_FIND_DEPENDENCY_NAMES} )
     endif()
 endforeach()
 
-set(ALSA_VERSION_STRING "1.2.7.2")
-set(ALSA_INCLUDE_DIRS ${libalsa_INCLUDE_DIRS_RELEASE} )
-set(ALSA_INCLUDE_DIR ${libalsa_INCLUDE_DIRS_RELEASE} )
-set(ALSA_LIBRARIES ${libalsa_LIBRARIES_RELEASE} )
-set(ALSA_DEFINITIONS ${libalsa_DEFINITIONS_RELEASE} )
+set(ALSA_VERSION_STRING "1.2.10")
+set(ALSA_INCLUDE_DIRS ${libalsa_INCLUDE_DIRS_DEBUG} )
+set(ALSA_INCLUDE_DIR ${libalsa_INCLUDE_DIRS_DEBUG} )
+set(ALSA_LIBRARIES ${libalsa_LIBRARIES_DEBUG} )
+set(ALSA_DEFINITIONS ${libalsa_DEFINITIONS_DEBUG} )
 
-# Only the first installed configuration is included to avoid the collision
-foreach(_BUILD_MODULE ${libalsa_BUILD_MODULES_PATHS_RELEASE} )
+
+# Definition of extra CMake variables from cmake_extra_variables
+
+
+# Only the last installed configuration BUILD_MODULES are included to avoid the collision
+foreach(_BUILD_MODULE ${libalsa_BUILD_MODULES_PATHS_DEBUG} )
     message(${ALSA_MESSAGE_MODE} "Conan: Including build module from '${_BUILD_MODULE}'")
     include(${_BUILD_MODULE})
 endforeach()

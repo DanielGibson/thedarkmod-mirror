@@ -26,13 +26,17 @@ foreach(_DEPENDENCY ${tinyformat_FIND_DEPENDENCY_NAMES} )
 endforeach()
 
 set(tinyformat_VERSION_STRING "2.3.0")
-set(tinyformat_INCLUDE_DIRS ${tinyformat_INCLUDE_DIRS_RELEASE} )
-set(tinyformat_INCLUDE_DIR ${tinyformat_INCLUDE_DIRS_RELEASE} )
-set(tinyformat_LIBRARIES ${tinyformat_LIBRARIES_RELEASE} )
-set(tinyformat_DEFINITIONS ${tinyformat_DEFINITIONS_RELEASE} )
+set(tinyformat_INCLUDE_DIRS ${tinyformat_INCLUDE_DIRS_DEBUG} )
+set(tinyformat_INCLUDE_DIR ${tinyformat_INCLUDE_DIRS_DEBUG} )
+set(tinyformat_LIBRARIES ${tinyformat_LIBRARIES_DEBUG} )
+set(tinyformat_DEFINITIONS ${tinyformat_DEFINITIONS_DEBUG} )
 
-# Only the first installed configuration is included to avoid the collision
-foreach(_BUILD_MODULE ${tinyformat_BUILD_MODULES_PATHS_RELEASE} )
+
+# Definition of extra CMake variables from cmake_extra_variables
+
+
+# Only the last installed configuration BUILD_MODULES are included to avoid the collision
+foreach(_BUILD_MODULE ${tinyformat_BUILD_MODULES_PATHS_DEBUG} )
     message(${tinyformat_MESSAGE_MODE} "Conan: Including build module from '${_BUILD_MODULE}'")
     include(${_BUILD_MODULE})
 endforeach()

@@ -95,6 +95,7 @@ set(CMAKE_MODULE_PATH ${mbedtls_BUILD_DIRS_DEBUG} ${CMAKE_MODULE_PATH})
         set_property(TARGET MbedTLS::mbedtls APPEND PROPERTY INTERFACE_COMPILE_OPTIONS
                      $<$<CONFIG:Debug>:${mbedtls_MbedTLS_mbedtls_COMPILE_OPTIONS_DEBUG}>)
 
+
     ########## COMPONENT MbedTLS::mbedx509 #############
 
         set(mbedtls_MbedTLS_mbedx509_FRAMEWORKS_FOUND_DEBUG "")
@@ -154,6 +155,7 @@ set(CMAKE_MODULE_PATH ${mbedtls_BUILD_DIRS_DEBUG} ${CMAKE_MODULE_PATH})
         set_property(TARGET MbedTLS::mbedx509 APPEND PROPERTY INTERFACE_COMPILE_OPTIONS
                      $<$<CONFIG:Debug>:${mbedtls_MbedTLS_mbedx509_COMPILE_OPTIONS_DEBUG}>)
 
+
     ########## COMPONENT MbedTLS::mbedcrypto #############
 
         set(mbedtls_MbedTLS_mbedcrypto_FRAMEWORKS_FOUND_DEBUG "")
@@ -212,6 +214,7 @@ set(CMAKE_MODULE_PATH ${mbedtls_BUILD_DIRS_DEBUG} ${CMAKE_MODULE_PATH})
                      $<$<CONFIG:Debug>:${mbedtls_MbedTLS_mbedcrypto_COMPILE_DEFINITIONS_DEBUG}>)
         set_property(TARGET MbedTLS::mbedcrypto APPEND PROPERTY INTERFACE_COMPILE_OPTIONS
                      $<$<CONFIG:Debug>:${mbedtls_MbedTLS_mbedcrypto_COMPILE_OPTIONS_DEBUG}>)
+
 
     ########## AGGREGATED GLOBAL TARGET WITH THE COMPONENTS #####################
     set_property(TARGET MbedTLS::mbedtls APPEND PROPERTY INTERFACE_LINK_LIBRARIES MbedTLS::mbedtls)

@@ -1,8 +1,11 @@
 @echo off
 chcp 65001 > nul
+@echo off
+
+
 setlocal
 echo @echo off > "%~dp0/deactivate_conanrunenv-release-x86_64.bat"
-echo echo Restoring environment >> "%~dp0/deactivate_conanrunenv-release-x86_64.bat"
+echo echo Restoring environment for conanrunenv-release-x86_64.bat >> "%~dp0/deactivate_conanrunenv-release-x86_64.bat"
 for %%v in () do (
     set foundenvvar=
     for /f "delims== tokens=1,2" %%a in ('set') do (
@@ -16,4 +19,6 @@ for %%v in () do (
     )
 )
 endlocal
+
+
 

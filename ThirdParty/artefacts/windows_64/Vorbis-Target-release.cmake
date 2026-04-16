@@ -95,6 +95,7 @@ set(CMAKE_MODULE_PATH ${vorbis_BUILD_DIRS_RELEASE} ${CMAKE_MODULE_PATH})
         set_property(TARGET vorbis::vorbisfile-alias APPEND PROPERTY INTERFACE_COMPILE_OPTIONS
                      $<$<CONFIG:Release>:${vorbis_vorbis_vorbisfile-alias_COMPILE_OPTIONS_RELEASE}>)
 
+
     ########## COMPONENT vorbis::vorbisenc-alias #############
 
         set(vorbis_vorbis_vorbisenc-alias_FRAMEWORKS_FOUND_RELEASE "")
@@ -153,6 +154,7 @@ set(CMAKE_MODULE_PATH ${vorbis_BUILD_DIRS_RELEASE} ${CMAKE_MODULE_PATH})
                      $<$<CONFIG:Release>:${vorbis_vorbis_vorbisenc-alias_COMPILE_DEFINITIONS_RELEASE}>)
         set_property(TARGET vorbis::vorbisenc-alias APPEND PROPERTY INTERFACE_COMPILE_OPTIONS
                      $<$<CONFIG:Release>:${vorbis_vorbis_vorbisenc-alias_COMPILE_OPTIONS_RELEASE}>)
+
 
     ########## COMPONENT Vorbis::vorbisfile #############
 
@@ -213,6 +215,7 @@ set(CMAKE_MODULE_PATH ${vorbis_BUILD_DIRS_RELEASE} ${CMAKE_MODULE_PATH})
         set_property(TARGET Vorbis::vorbisfile APPEND PROPERTY INTERFACE_COMPILE_OPTIONS
                      $<$<CONFIG:Release>:${vorbis_Vorbis_vorbisfile_COMPILE_OPTIONS_RELEASE}>)
 
+
     ########## COMPONENT Vorbis::vorbisenc #############
 
         set(vorbis_Vorbis_vorbisenc_FRAMEWORKS_FOUND_RELEASE "")
@@ -272,6 +275,7 @@ set(CMAKE_MODULE_PATH ${vorbis_BUILD_DIRS_RELEASE} ${CMAKE_MODULE_PATH})
         set_property(TARGET Vorbis::vorbisenc APPEND PROPERTY INTERFACE_COMPILE_OPTIONS
                      $<$<CONFIG:Release>:${vorbis_Vorbis_vorbisenc_COMPILE_OPTIONS_RELEASE}>)
 
+
     ########## COMPONENT Vorbis::vorbis #############
 
         set(vorbis_Vorbis_vorbis_FRAMEWORKS_FOUND_RELEASE "")
@@ -330,6 +334,7 @@ set(CMAKE_MODULE_PATH ${vorbis_BUILD_DIRS_RELEASE} ${CMAKE_MODULE_PATH})
                      $<$<CONFIG:Release>:${vorbis_Vorbis_vorbis_COMPILE_DEFINITIONS_RELEASE}>)
         set_property(TARGET Vorbis::vorbis APPEND PROPERTY INTERFACE_COMPILE_OPTIONS
                      $<$<CONFIG:Release>:${vorbis_Vorbis_vorbis_COMPILE_OPTIONS_RELEASE}>)
+
 
     ########## AGGREGATED GLOBAL TARGET WITH THE COMPONENTS #####################
     set_property(TARGET vorbis::vorbis APPEND PROPERTY INTERFACE_LINK_LIBRARIES vorbis::vorbisfile-alias)

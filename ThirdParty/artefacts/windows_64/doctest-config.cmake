@@ -26,13 +26,17 @@ foreach(_DEPENDENCY ${doctest_FIND_DEPENDENCY_NAMES} )
 endforeach()
 
 set(doctest_VERSION_STRING "2.4.11")
-set(doctest_INCLUDE_DIRS ${doctest_INCLUDE_DIRS_RELEASE} )
-set(doctest_INCLUDE_DIR ${doctest_INCLUDE_DIRS_RELEASE} )
-set(doctest_LIBRARIES ${doctest_LIBRARIES_RELEASE} )
-set(doctest_DEFINITIONS ${doctest_DEFINITIONS_RELEASE} )
+set(doctest_INCLUDE_DIRS ${doctest_INCLUDE_DIRS_DEBUG} )
+set(doctest_INCLUDE_DIR ${doctest_INCLUDE_DIRS_DEBUG} )
+set(doctest_LIBRARIES ${doctest_LIBRARIES_DEBUG} )
+set(doctest_DEFINITIONS ${doctest_DEFINITIONS_DEBUG} )
 
-# Only the first installed configuration is included to avoid the collision
-foreach(_BUILD_MODULE ${doctest_BUILD_MODULES_PATHS_RELEASE} )
+
+# Definition of extra CMake variables from cmake_extra_variables
+
+
+# Only the last installed configuration BUILD_MODULES are included to avoid the collision
+foreach(_BUILD_MODULE ${doctest_BUILD_MODULES_PATHS_DEBUG} )
     message(${doctest_MESSAGE_MODE} "Conan: Including build module from '${_BUILD_MODULE}'")
     include(${_BUILD_MODULE})
 endforeach()

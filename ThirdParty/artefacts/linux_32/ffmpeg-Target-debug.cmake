@@ -16,7 +16,7 @@ set_property(TARGET ffmpeg_DEPS_TARGET
              APPEND PROPERTY INTERFACE_LINK_LIBRARIES
              $<$<CONFIG:Debug>:${ffmpeg_FRAMEWORKS_FOUND_DEBUG}>
              $<$<CONFIG:Debug>:${ffmpeg_SYSTEM_LIBS_DEBUG}>
-             $<$<CONFIG:Debug>:ffmpeg::avutil;ffmpeg::avcodec;ffmpeg::swresample>)
+             $<$<CONFIG:Debug>:ffmpeg::avutil;ffmpeg::avcodec;ffmpeg::swscale;ffmpeg::swresample>)
 
 ####### Find the libraries declared in cpp_info.libs, create an IMPORTED target for each one and link the
 ####### ffmpeg_DEPS_TARGET to all of them
@@ -95,6 +95,7 @@ set(CMAKE_MODULE_PATH ${ffmpeg_BUILD_DIRS_DEBUG} ${CMAKE_MODULE_PATH})
         set_property(TARGET ffmpeg::avformat APPEND PROPERTY INTERFACE_COMPILE_OPTIONS
                      $<$<CONFIG:Debug>:${ffmpeg_ffmpeg_avformat_COMPILE_OPTIONS_DEBUG}>)
 
+
     ########## COMPONENT ffmpeg::avcodec #############
 
         set(ffmpeg_ffmpeg_avcodec_FRAMEWORKS_FOUND_DEBUG "")
@@ -153,6 +154,7 @@ set(CMAKE_MODULE_PATH ${ffmpeg_BUILD_DIRS_DEBUG} ${CMAKE_MODULE_PATH})
                      $<$<CONFIG:Debug>:${ffmpeg_ffmpeg_avcodec_COMPILE_DEFINITIONS_DEBUG}>)
         set_property(TARGET ffmpeg::avcodec APPEND PROPERTY INTERFACE_COMPILE_OPTIONS
                      $<$<CONFIG:Debug>:${ffmpeg_ffmpeg_avcodec_COMPILE_OPTIONS_DEBUG}>)
+
 
     ########## COMPONENT ffmpeg::swresample #############
 
@@ -213,6 +215,7 @@ set(CMAKE_MODULE_PATH ${ffmpeg_BUILD_DIRS_DEBUG} ${CMAKE_MODULE_PATH})
         set_property(TARGET ffmpeg::swresample APPEND PROPERTY INTERFACE_COMPILE_OPTIONS
                      $<$<CONFIG:Debug>:${ffmpeg_ffmpeg_swresample_COMPILE_OPTIONS_DEBUG}>)
 
+
     ########## COMPONENT ffmpeg::swscale #############
 
         set(ffmpeg_ffmpeg_swscale_FRAMEWORKS_FOUND_DEBUG "")
@@ -272,6 +275,7 @@ set(CMAKE_MODULE_PATH ${ffmpeg_BUILD_DIRS_DEBUG} ${CMAKE_MODULE_PATH})
         set_property(TARGET ffmpeg::swscale APPEND PROPERTY INTERFACE_COMPILE_OPTIONS
                      $<$<CONFIG:Debug>:${ffmpeg_ffmpeg_swscale_COMPILE_OPTIONS_DEBUG}>)
 
+
     ########## COMPONENT ffmpeg::avutil #############
 
         set(ffmpeg_ffmpeg_avutil_FRAMEWORKS_FOUND_DEBUG "")
@@ -330,6 +334,7 @@ set(CMAKE_MODULE_PATH ${ffmpeg_BUILD_DIRS_DEBUG} ${CMAKE_MODULE_PATH})
                      $<$<CONFIG:Debug>:${ffmpeg_ffmpeg_avutil_COMPILE_DEFINITIONS_DEBUG}>)
         set_property(TARGET ffmpeg::avutil APPEND PROPERTY INTERFACE_COMPILE_OPTIONS
                      $<$<CONFIG:Debug>:${ffmpeg_ffmpeg_avutil_COMPILE_OPTIONS_DEBUG}>)
+
 
     ########## AGGREGATED GLOBAL TARGET WITH THE COMPONENTS #####################
     set_property(TARGET ffmpeg::ffmpeg APPEND PROPERTY INTERFACE_LINK_LIBRARIES ffmpeg::avformat)

@@ -95,6 +95,7 @@ set(CMAKE_MODULE_PATH ${ogg_BUILD_DIRS_DEBUG} ${CMAKE_MODULE_PATH})
         set_property(TARGET Ogg::ogg APPEND PROPERTY INTERFACE_COMPILE_OPTIONS
                      $<$<CONFIG:Debug>:${ogg_Ogg_ogg_COMPILE_OPTIONS_DEBUG}>)
 
+
     ########## AGGREGATED GLOBAL TARGET WITH THE COMPONENTS #####################
     set_property(TARGET Ogg::ogg APPEND PROPERTY INTERFACE_LINK_LIBRARIES Ogg::ogg)
 

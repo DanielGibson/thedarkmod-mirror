@@ -26,13 +26,17 @@ foreach(_DEPENDENCY ${libjpeg_FIND_DEPENDENCY_NAMES} )
 endforeach()
 
 set(JPEG_VERSION_STRING "9f")
-set(JPEG_INCLUDE_DIRS ${libjpeg_INCLUDE_DIRS_RELEASE} )
-set(JPEG_INCLUDE_DIR ${libjpeg_INCLUDE_DIRS_RELEASE} )
-set(JPEG_LIBRARIES ${libjpeg_LIBRARIES_RELEASE} )
-set(JPEG_DEFINITIONS ${libjpeg_DEFINITIONS_RELEASE} )
+set(JPEG_INCLUDE_DIRS ${libjpeg_INCLUDE_DIRS_DEBUG} )
+set(JPEG_INCLUDE_DIR ${libjpeg_INCLUDE_DIRS_DEBUG} )
+set(JPEG_LIBRARIES ${libjpeg_LIBRARIES_DEBUG} )
+set(JPEG_DEFINITIONS ${libjpeg_DEFINITIONS_DEBUG} )
 
-# Only the first installed configuration is included to avoid the collision
-foreach(_BUILD_MODULE ${libjpeg_BUILD_MODULES_PATHS_RELEASE} )
+
+# Definition of extra CMake variables from cmake_extra_variables
+
+
+# Only the last installed configuration BUILD_MODULES are included to avoid the collision
+foreach(_BUILD_MODULE ${libjpeg_BUILD_MODULES_PATHS_DEBUG} )
     message(${JPEG_MESSAGE_MODE} "Conan: Including build module from '${_BUILD_MODULE}'")
     include(${_BUILD_MODULE})
 endforeach()
@@ -46,3 +50,8 @@ find_package_handle_standard_args(JPEG
                                   REQUIRED_VARS JPEG_VERSION
                                   VERSION_VAR JPEG_VERSION)
 mark_as_advanced(JPEG_FOUND JPEG_VERSION)
+
+set(JPEG_FOUND 1)
+set(JPEG_VERSION "9f")
+mark_as_advanced(JPEG_FOUND JPEG_VERSION)
+

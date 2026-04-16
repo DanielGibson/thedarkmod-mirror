@@ -26,13 +26,17 @@ foreach(_DEPENDENCY ${vorbis_FIND_DEPENDENCY_NAMES} )
 endforeach()
 
 set(Vorbis_VERSION_STRING "1.3.7")
-set(Vorbis_INCLUDE_DIRS ${vorbis_INCLUDE_DIRS_RELEASE} )
-set(Vorbis_INCLUDE_DIR ${vorbis_INCLUDE_DIRS_RELEASE} )
-set(Vorbis_LIBRARIES ${vorbis_LIBRARIES_RELEASE} )
-set(Vorbis_DEFINITIONS ${vorbis_DEFINITIONS_RELEASE} )
+set(Vorbis_INCLUDE_DIRS ${vorbis_INCLUDE_DIRS_DEBUG} )
+set(Vorbis_INCLUDE_DIR ${vorbis_INCLUDE_DIRS_DEBUG} )
+set(Vorbis_LIBRARIES ${vorbis_LIBRARIES_DEBUG} )
+set(Vorbis_DEFINITIONS ${vorbis_DEFINITIONS_DEBUG} )
 
-# Only the first installed configuration is included to avoid the collision
-foreach(_BUILD_MODULE ${vorbis_BUILD_MODULES_PATHS_RELEASE} )
+
+# Definition of extra CMake variables from cmake_extra_variables
+
+
+# Only the last installed configuration BUILD_MODULES are included to avoid the collision
+foreach(_BUILD_MODULE ${vorbis_BUILD_MODULES_PATHS_DEBUG} )
     message(${Vorbis_MESSAGE_MODE} "Conan: Including build module from '${_BUILD_MODULE}'")
     include(${_BUILD_MODULE})
 endforeach()

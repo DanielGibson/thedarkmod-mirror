@@ -25,14 +25,18 @@ foreach(_DEPENDENCY ${fltk_FIND_DEPENDENCY_NAMES} )
     endif()
 endforeach()
 
-set(fltk_VERSION_STRING "1.3.9")
-set(fltk_INCLUDE_DIRS ${fltk_INCLUDE_DIRS_RELEASE} )
-set(fltk_INCLUDE_DIR ${fltk_INCLUDE_DIRS_RELEASE} )
-set(fltk_LIBRARIES ${fltk_LIBRARIES_RELEASE} )
-set(fltk_DEFINITIONS ${fltk_DEFINITIONS_RELEASE} )
+set(fltk_VERSION_STRING "1.3.11")
+set(fltk_INCLUDE_DIRS ${fltk_INCLUDE_DIRS_DEBUG} )
+set(fltk_INCLUDE_DIR ${fltk_INCLUDE_DIRS_DEBUG} )
+set(fltk_LIBRARIES ${fltk_LIBRARIES_DEBUG} )
+set(fltk_DEFINITIONS ${fltk_DEFINITIONS_DEBUG} )
 
-# Only the first installed configuration is included to avoid the collision
-foreach(_BUILD_MODULE ${fltk_BUILD_MODULES_PATHS_RELEASE} )
+
+# Definition of extra CMake variables from cmake_extra_variables
+
+
+# Only the last installed configuration BUILD_MODULES are included to avoid the collision
+foreach(_BUILD_MODULE ${fltk_BUILD_MODULES_PATHS_DEBUG} )
     message(${fltk_MESSAGE_MODE} "Conan: Including build module from '${_BUILD_MODULE}'")
     include(${_BUILD_MODULE})
 endforeach()

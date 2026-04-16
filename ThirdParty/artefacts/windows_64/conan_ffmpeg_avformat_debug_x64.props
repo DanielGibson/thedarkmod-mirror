@@ -3,7 +3,7 @@
   <ImportGroup Label="PropertySheets">
     <Import Condition="'$(conan_ffmpeg_avutil_props_imported)' != 'True'" Project="conan_ffmpeg_avutil.props"/>
     <Import Condition="'$(conan_ffmpeg_avcodec_props_imported)' != 'True'" Project="conan_ffmpeg_avcodec.props"/>
-    <Import Condition="'$(conan_ffmpeg_swresample_props_imported)' != 'True'" Project="conan_ffmpeg_swresample.props"/>
+    <Import Condition="'$(conan_ffmpeg_swscale_props_imported)' != 'True'" Project="conan_ffmpeg_swscale.props"/>
   </ImportGroup>
   <ImportGroup Label="PropertySheets">
     <Import Project="conan_ffmpeg_avformat_vars_debug_x64.props"/>

@@ -26,13 +26,17 @@ foreach(_DEPENDENCY ${zlib_FIND_DEPENDENCY_NAMES} )
 endforeach()
 
 set(ZLIB_VERSION_STRING "1.3.1")
-set(ZLIB_INCLUDE_DIRS ${zlib_INCLUDE_DIRS_RELEASE} )
-set(ZLIB_INCLUDE_DIR ${zlib_INCLUDE_DIRS_RELEASE} )
-set(ZLIB_LIBRARIES ${zlib_LIBRARIES_RELEASE} )
-set(ZLIB_DEFINITIONS ${zlib_DEFINITIONS_RELEASE} )
+set(ZLIB_INCLUDE_DIRS ${zlib_INCLUDE_DIRS_DEBUG} )
+set(ZLIB_INCLUDE_DIR ${zlib_INCLUDE_DIRS_DEBUG} )
+set(ZLIB_LIBRARIES ${zlib_LIBRARIES_DEBUG} )
+set(ZLIB_DEFINITIONS ${zlib_DEFINITIONS_DEBUG} )
 
-# Only the first installed configuration is included to avoid the collision
-foreach(_BUILD_MODULE ${zlib_BUILD_MODULES_PATHS_RELEASE} )
+
+# Definition of extra CMake variables from cmake_extra_variables
+
+
+# Only the last installed configuration BUILD_MODULES are included to avoid the collision
+foreach(_BUILD_MODULE ${zlib_BUILD_MODULES_PATHS_DEBUG} )
     message(${ZLIB_MESSAGE_MODE} "Conan: Including build module from '${_BUILD_MODULE}'")
     include(${_BUILD_MODULE})
 endforeach()

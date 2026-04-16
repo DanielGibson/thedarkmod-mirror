@@ -25,14 +25,18 @@ foreach(_DEPENDENCY ${openal_FIND_DEPENDENCY_NAMES} )
     endif()
 endforeach()
 
-set(OpenAL_VERSION_STRING "1.22.2")
-set(OpenAL_INCLUDE_DIRS ${openal_INCLUDE_DIRS_RELEASE} )
-set(OpenAL_INCLUDE_DIR ${openal_INCLUDE_DIRS_RELEASE} )
-set(OpenAL_LIBRARIES ${openal_LIBRARIES_RELEASE} )
-set(OpenAL_DEFINITIONS ${openal_DEFINITIONS_RELEASE} )
+set(OpenAL_VERSION_STRING "1.24.1")
+set(OpenAL_INCLUDE_DIRS ${openal_INCLUDE_DIRS_DEBUG} )
+set(OpenAL_INCLUDE_DIR ${openal_INCLUDE_DIRS_DEBUG} )
+set(OpenAL_LIBRARIES ${openal_LIBRARIES_DEBUG} )
+set(OpenAL_DEFINITIONS ${openal_DEFINITIONS_DEBUG} )
 
-# Only the first installed configuration is included to avoid the collision
-foreach(_BUILD_MODULE ${openal_BUILD_MODULES_PATHS_RELEASE} )
+
+# Definition of extra CMake variables from cmake_extra_variables
+
+
+# Only the last installed configuration BUILD_MODULES are included to avoid the collision
+foreach(_BUILD_MODULE ${openal_BUILD_MODULES_PATHS_DEBUG} )
     message(${OpenAL_MESSAGE_MODE} "Conan: Including build module from '${_BUILD_MODULE}'")
     include(${_BUILD_MODULE})
 endforeach()

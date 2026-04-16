@@ -25,14 +25,18 @@ foreach(_DEPENDENCY ${pugixml_FIND_DEPENDENCY_NAMES} )
     endif()
 endforeach()
 
-set(pugixml_VERSION_STRING "1.14")
-set(pugixml_INCLUDE_DIRS ${pugixml_INCLUDE_DIRS_RELEASE} )
-set(pugixml_INCLUDE_DIR ${pugixml_INCLUDE_DIRS_RELEASE} )
-set(pugixml_LIBRARIES ${pugixml_LIBRARIES_RELEASE} )
-set(pugixml_DEFINITIONS ${pugixml_DEFINITIONS_RELEASE} )
+set(pugixml_VERSION_STRING "1.15")
+set(pugixml_INCLUDE_DIRS ${pugixml_INCLUDE_DIRS_DEBUG} )
+set(pugixml_INCLUDE_DIR ${pugixml_INCLUDE_DIRS_DEBUG} )
+set(pugixml_LIBRARIES ${pugixml_LIBRARIES_DEBUG} )
+set(pugixml_DEFINITIONS ${pugixml_DEFINITIONS_DEBUG} )
 
-# Only the first installed configuration is included to avoid the collision
-foreach(_BUILD_MODULE ${pugixml_BUILD_MODULES_PATHS_RELEASE} )
+
+# Definition of extra CMake variables from cmake_extra_variables
+
+
+# Only the last installed configuration BUILD_MODULES are included to avoid the collision
+foreach(_BUILD_MODULE ${pugixml_BUILD_MODULES_PATHS_DEBUG} )
     message(${pugixml_MESSAGE_MODE} "Conan: Including build module from '${_BUILD_MODULE}'")
     include(${_BUILD_MODULE})
 endforeach()

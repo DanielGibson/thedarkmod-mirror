@@ -26,13 +26,17 @@ foreach(_DEPENDENCY ${blake2_FIND_DEPENDENCY_NAMES} )
 endforeach()
 
 set(blake2_VERSION_STRING "20190724")
-set(blake2_INCLUDE_DIRS ${blake2_INCLUDE_DIRS_RELEASE} )
-set(blake2_INCLUDE_DIR ${blake2_INCLUDE_DIRS_RELEASE} )
-set(blake2_LIBRARIES ${blake2_LIBRARIES_RELEASE} )
-set(blake2_DEFINITIONS ${blake2_DEFINITIONS_RELEASE} )
+set(blake2_INCLUDE_DIRS ${blake2_INCLUDE_DIRS_DEBUG} )
+set(blake2_INCLUDE_DIR ${blake2_INCLUDE_DIRS_DEBUG} )
+set(blake2_LIBRARIES ${blake2_LIBRARIES_DEBUG} )
+set(blake2_DEFINITIONS ${blake2_DEFINITIONS_DEBUG} )
 
-# Only the first installed configuration is included to avoid the collision
-foreach(_BUILD_MODULE ${blake2_BUILD_MODULES_PATHS_RELEASE} )
+
+# Definition of extra CMake variables from cmake_extra_variables
+
+
+# Only the last installed configuration BUILD_MODULES are included to avoid the collision
+foreach(_BUILD_MODULE ${blake2_BUILD_MODULES_PATHS_DEBUG} )
     message(${blake2_MESSAGE_MODE} "Conan: Including build module from '${_BUILD_MODULE}'")
     include(${_BUILD_MODULE})
 endforeach()

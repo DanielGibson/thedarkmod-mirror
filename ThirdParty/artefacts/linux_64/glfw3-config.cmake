@@ -26,13 +26,17 @@ foreach(_DEPENDENCY ${glfw_FIND_DEPENDENCY_NAMES} )
 endforeach()
 
 set(glfw3_VERSION_STRING "3.4")
-set(glfw3_INCLUDE_DIRS ${glfw_INCLUDE_DIRS_RELEASE} )
-set(glfw3_INCLUDE_DIR ${glfw_INCLUDE_DIRS_RELEASE} )
-set(glfw3_LIBRARIES ${glfw_LIBRARIES_RELEASE} )
-set(glfw3_DEFINITIONS ${glfw_DEFINITIONS_RELEASE} )
+set(glfw3_INCLUDE_DIRS ${glfw_INCLUDE_DIRS_DEBUG} )
+set(glfw3_INCLUDE_DIR ${glfw_INCLUDE_DIRS_DEBUG} )
+set(glfw3_LIBRARIES ${glfw_LIBRARIES_DEBUG} )
+set(glfw3_DEFINITIONS ${glfw_DEFINITIONS_DEBUG} )
 
-# Only the first installed configuration is included to avoid the collision
-foreach(_BUILD_MODULE ${glfw_BUILD_MODULES_PATHS_RELEASE} )
+
+# Definition of extra CMake variables from cmake_extra_variables
+
+
+# Only the last installed configuration BUILD_MODULES are included to avoid the collision
+foreach(_BUILD_MODULE ${glfw_BUILD_MODULES_PATHS_DEBUG} )
     message(${glfw3_MESSAGE_MODE} "Conan: Including build module from '${_BUILD_MODULE}'")
     include(${_BUILD_MODULE})
 endforeach()
