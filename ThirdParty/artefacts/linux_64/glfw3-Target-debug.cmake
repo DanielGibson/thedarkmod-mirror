@@ -16,7 +16,7 @@ set_property(TARGET glfw_DEPS_TARGET
              APPEND PROPERTY INTERFACE_LINK_LIBRARIES
              $<$<CONFIG:Debug>:${glfw_FRAMEWORKS_FOUND_DEBUG}>
              $<$<CONFIG:Debug>:${glfw_SYSTEM_LIBS_DEBUG}>
-             $<$<CONFIG:Debug>:opengl::opengl;xorg::xorg>)
+             $<$<CONFIG:Debug>:opengl::opengl>)
 
 ####### Find the libraries declared in cpp_info.libs, create an IMPORTED target for each one and link the
 ####### glfw_DEPS_TARGET to all of them

@@ -16,7 +16,7 @@ set_property(TARGET fltk_DEPS_TARGET
              APPEND PROPERTY INTERFACE_LINK_LIBRARIES
              $<$<CONFIG:Debug>:${fltk_FRAMEWORKS_FOUND_DEBUG}>
              $<$<CONFIG:Debug>:${fltk_SYSTEM_LIBS_DEBUG}>
-             $<$<CONFIG:Debug>:JPEG::JPEG;PNG::PNG;ZLIB::ZLIB;glu::glu;opengl::opengl;xorg::xorg>)
+             $<$<CONFIG:Debug>:JPEG::JPEG;PNG::PNG;ZLIB::ZLIB;glu::glu;opengl::opengl>)
 
 ####### Find the libraries declared in cpp_info.libs, create an IMPORTED target for each one and link the
 ####### fltk_DEPS_TARGET to all of them

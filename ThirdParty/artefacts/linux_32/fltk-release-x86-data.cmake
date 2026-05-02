@@ -3,17 +3,16 @@
 
 set(fltk_COMPONENT_NAMES "")
 if(DEFINED fltk_FIND_DEPENDENCY_NAMES)
-  list(APPEND fltk_FIND_DEPENDENCY_NAMES JPEG PNG ZLIB glu opengl_system xorg)
+  list(APPEND fltk_FIND_DEPENDENCY_NAMES JPEG PNG ZLIB glu opengl_system)
   list(REMOVE_DUPLICATES fltk_FIND_DEPENDENCY_NAMES)
 else()
-  set(fltk_FIND_DEPENDENCY_NAMES JPEG PNG ZLIB glu opengl_system xorg)
+  set(fltk_FIND_DEPENDENCY_NAMES JPEG PNG ZLIB glu opengl_system)
 endif()
 set(JPEG_FIND_MODE "NO_MODULE")
 set(PNG_FIND_MODE "NO_MODULE")
 set(ZLIB_FIND_MODE "NO_MODULE")
 set(glu_FIND_MODE "NO_MODULE")
 set(opengl_system_FIND_MODE "NO_MODULE")
-set(xorg_FIND_MODE "NO_MODULE")
 
 ########### VARIABLES #######################################################################
 #############################################################################################

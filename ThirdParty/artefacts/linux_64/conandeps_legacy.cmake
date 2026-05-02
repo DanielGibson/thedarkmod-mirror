@@ -18,7 +18,6 @@ find_package(blake2)
 find_package(glfw3)
 find_package(OpenAL)
 find_package(pugixml)
-find_package(xorg)
 find_package(ALSA)
 
-set(CONANDEPS_LEGACY  tinyformat::tinyformat  doctest::doctest  tracy::tracy  minizip::minizip  CURL::libcurl  MbedTLS::mbedtls  ffmpeg::ffmpeg  vorbis::vorbis  Ogg::ogg  fltk::fltk  JPEG::JPEG  PNG::PNG  ZLIB::ZLIB  blake2::blake2  glfw  OpenAL::OpenAL  pugixml::pugixml  xorg::xorg  ALSA::ALSA )
+set(CONANDEPS_LEGACY  tinyformat::tinyformat  doctest::doctest  tracy::tracy  minizip::minizip  CURL::libcurl  MbedTLS::mbedtls  ffmpeg::ffmpeg  vorbis::vorbis  Ogg::ogg  fltk::fltk  JPEG::JPEG  PNG::PNG  ZLIB::ZLIB  blake2::blake2  glfw  OpenAL::OpenAL  pugixml::pugixml  ALSA::ALSA )

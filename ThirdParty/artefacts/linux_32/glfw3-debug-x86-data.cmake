@@ -3,13 +3,12 @@
 
 set(glfw_COMPONENT_NAMES "")
 if(DEFINED glfw_FIND_DEPENDENCY_NAMES)
-  list(APPEND glfw_FIND_DEPENDENCY_NAMES opengl_system xorg)
+  list(APPEND glfw_FIND_DEPENDENCY_NAMES opengl_system)
   list(REMOVE_DUPLICATES glfw_FIND_DEPENDENCY_NAMES)
 else()
-  set(glfw_FIND_DEPENDENCY_NAMES opengl_system xorg)
+  set(glfw_FIND_DEPENDENCY_NAMES opengl_system)
 endif()
 set(opengl_system_FIND_MODE "NO_MODULE")
-set(xorg_FIND_MODE "NO_MODULE")
 
 ########### VARIABLES #######################################################################
 #############################################################################################
